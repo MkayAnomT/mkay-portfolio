@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="MKAY — Product Designer" />
+    <title>MKAY — Product Designer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap");
+      :root {
+        --ink: #17151b;
+        --paper: #f6f3ee;
+        --lime: #c9ff45;
+        --muted: #77727d;
+        --line: rgba(23, 21, 27, 0.16);
+        --g: clamp(22px, 5vw, 82px);
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Manrope, Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--lime);
+      }
+      .nav {
+        position: fixed;
+        z-index: 50;
+        top: 18px;
+        left: 50%;
+        transform: translate(-50%, -150%);
+        width: min(calc(100% - 28px), 760px);
+        padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        background: rgba(23, 21, 27, 0.88);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        backdrop-filter: blur(18px);
+        transition: transform 0.8s var(--ease);
+      }
+      .nav.visible {
+        transform: translate(-50%, 0);
+      }
+      .logo {
+        font-family: Unbounded;
+        font-weight: 800;
+        font-size: 14px;
+        padding: 10px 13px;
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .logo-dot,
+      .hero-kicker span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+      }
+      .nav-links {
+        display: flex;
+        gap: 3px;
+      }
+      .nav-links a {
+        font-size: 13px;
+        padding: 10px 13px;
+        border-radius: 999px;
+        color: #ddd;
+      }
+      .nav-links a:hover {
+        background: #ffffff1a;
+      }
+      .nav-cta {
+        background: #fff;
+        color: var(--ink) !important;
+        padding: 10px 13px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .nav-cta .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #62c66b;
+        margin-right: 6px;
+      }
+      .nav-contact {
+        position: relative;
+      }
+      .nav-cta {
+        border: 0;
+        font-family: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .nav-cta .chevron {
+        font-size: 15px;
+        line-height: 1;
+        margin-left: 2px;
+        transition: transform 0.25s ease;
+      }
+      .nav-contact.open .nav-cta .chevron {
+        transform: rotate(180deg);
+      }
+      .contact-menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        width: 220px;
+        padding: 7px;
+        background: rgba(23, 21, 27, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 18px;
+        box-shadow: 0 18px 50px #0004;
+        backdrop-filter: blur(18px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px) scale(0.98);
+        transform-origin: top right;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s ease;
+      }
+      .nav-contact.open .contact-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .contact-menu a {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 11px;
+        border-radius: 12px;
+        color: #fff;
+      }
+      .contact-menu a:hover {
+        background: #ffffff12;
+      }
+      .contact-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: #ffffff12;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+      }
+      .contact-menu strong {
+        display: block;
+        font-size: 12px;
+      }
+      .contact-menu small {
+        display: block;
+        margin-top: 2px;
+        color: #aaa;
+        font-size: 10px;
+      }
+      section {
+        position: relative;
+        padding: clamp(92px, 12vw, 170px) var(--g);
+      }
+      .container {
+        width: 100%;
+        max-width: 1440px;
+        margin: auto;
+      }
+      .eyebrow {
+        font: 500 11px/1 DM Mono;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        opacity: 0.65;
+      }
+      .display {
+        font-family: Unbounded;
+        letter-spacing: -0.055em;
+        line-height: 0.95;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.9s var(--ease),
+          transform 0.9s var(--ease);
+      }
+      .reveal.left {
+        transform: translateX(-70px) rotate(-2deg);
+      }
+      .reveal.right {
+        transform: translateX(70px) rotate(2deg);
+      }
+      .reveal.scale {
+        transform: scale(0.84) rotate(-3deg);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .hero {
+        min-height: 100svh;
+        background: var(--ink);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding-top: 100px;
+        padding-bottom: 70px;
+        overflow: hidden;
+      }
+      .hero-grid {
+        max-width: 1440px;
+        margin: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 48px;
+        align-items: center;
+        position: relative;
+      }
+      .hero-kicker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--lime);
+        font: 500 11px DM Mono;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 22px;
+      }
+      .hero h1 {
+        font-size: clamp(48px, 10vw, 142px);
+        max-width: 1000px;
+        margin: 0 0 28px;
+      }
+      .hero h1 .accent {
+        color: var(--lime);
+      }
+      .hero-sub {
+        max-width: 570px;
+        color: #c9c6ca;
+        font-size: clamp(16px, 2vw, 21px);
+        line-height: 1.55;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        border: 1px solid #fff;
+        padding: 15px 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 14px;
+        transition:
+          transform 0.3s var(--ease),
+          background 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-4px);
+      }
+      .btn.primary {
+        background: var(--lime);
+        border-color: var(--lime);
+      }
+      .btn.secondary {
+        color: #fff;
+        border-color: #ffffff4d;
+      }
+      .hero-orb {
+        position: absolute;
+        width: min(65vw, 700px);
+        aspect-ratio: 1;
+        border: 1px solid #c9ff454d;
+        border-radius: 50%;
+        right: -15%;
+        top: 8%;
+      }
+      .hero-orb:before,
+      .hero-orb:after {
+        content: "";
+        position: absolute;
+        border: 1px solid #ffffff1a;
+        border-radius: 50%;
+      }
+      .hero-orb:before {
+        inset: 13%;
+      }
+      .hero-orb:after {
+        inset: 27%;
+      }
+      .hero-card {
+        position: absolute;
+        right: 4%;
+        bottom: 8%;
+        width: min(31vw, 390px);
+        aspect-ratio: 1.05;
+        background: var(--lime);
+        color: var(--ink);
+        padding: 24px;
+        border-radius: 28px;
+        transform: rotate(5deg);
+        box-shadow: 18px 24px #ffffff12;
+      }
+      .hero-card .mini {
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+      }
+      .hero-card strong {
+        display: block;
+        font-family: Unbounded;
+        font-size: clamp(20px, 3vw, 38px);
+        line-height: 1;
+        margin-top: 35px;
+        letter-spacing: -0.06em;
+      }
+      .hero-card .bottom {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        display: flex;
+        justify-content: space-between;
+        font: 500 10px DM Mono;
+      }
+      .marquee {
+        background: var(--lime);
+        color: var(--ink);
+        padding: 18px 0;
+        overflow: hidden;
+        border-block: 1px solid var(--ink);
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 28s linear infinite;
+      }
+      .marquee-item {
+        font: 700 clamp(15px, 1.7vw, 21px) Unbounded;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+      }
+      .marquee-item:after {
+        content: "✦";
+        margin: 0 26px;
+        font-family: Manrope;
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .work {
+        background: var(--paper);
+      }
+      .section-head,
+      .services-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 58px;
+      }
+      .section-head h2,
+      .services h2 {
+        font-size: clamp(38px, 6vw, 82px);
+        margin: 0;
+      }
+      .section-head p,
+      .services-intro {
+        max-width: 370px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0;
+      }
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+      .project {
+        display: block;
+        background: #fff;
+        border: 1px solid #17151b14;
+        border-radius: 24px;
+        padding: 9px;
+        box-shadow: 0 18px 45px #17151b12;
+        transition:
+          transform 0.5s var(--ease),
+          box-shadow 0.5s;
+      }
+      .project:hover {
+        transform: translateY(-9px) rotate(-0.4deg);
+        box-shadow: 0 28px 60px #17151b1f;
+      }
+      .project-visual {
+        height: 440px;
+        border-radius: 17px;
+        overflow: hidden;
+        background: #e8e4de;
+      }
+      .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px dashed #17151b40;
+        background: #ebe8e2;
+        color: var(--muted);
+        text-align: center;
+        padding: 20px;
+      }
+      .placeholder b {
+        font: 700 clamp(22px, 4vw, 42px) Unbounded;
+        letter-spacing: -0.06em;
+        color: var(--ink);
+      }
+      .placeholder span {
+        font: 500 11px DM Mono;
+        text-transform: uppercase;
+        margin-top: 12px;
+        letter-spacing: 0.1em;
+      }
+      .project-info {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 19px 12px 12px;
+      }
+      .project-name {
+        font-size: 17px;
+        font-weight: 800;
+      }
+      .project-cat {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .project-arrow {
+        font-size: 22px;
+      }
+      .services {
+        background: var(--ink);
+        color: #fff;
+      }
+      .service-list {
+        border-top: 1px solid #ffffff2b;
+      }
+      .service {
+        display: grid;
+        grid-template-columns: 70px 1fr auto;
+        gap: 20px;
+        align-items: center;
+        padding: 30px 0;
+        border-bottom: 1px solid #ffffff2b;
+        transition: padding 0.45s var(--ease);
+      }
+      .service:hover {
+        padding-inline: 14px;
+        background: #ffffff06;
+      }
+      .service-no {
+        font: 500 11px DM Mono;
+        color: var(--lime);
+      }
+      .service h3 {
+        font: 600 clamp(22px, 3vw, 40px) Unbounded;
+        letter-spacing: -0.05em;
+        margin: 0;
+        transition: transform 0.4s var(--ease);
+      }
+      .service:hover h3 {
+        transform: translateX(12px);
+      }
+      .service p {
+        font-size: 13px;
+        color: #99969d;
+        margin: 8px 0 0;
+      }
+      .service-icon {
+        width: 48px;
+        height: 48px;
+        border: 1px solid #ffffff40;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--lime);
+        transition: transform 0.4s var(--ease);
+      }
+      .service:hover .service-icon {
+        transform: rotate(-12deg) scale(1.12);
+      }
+      .stats {
+        background: var(--lime);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--ink);
+        border: 1px solid var(--ink);
+      }
+      .stat {
+        background: var(--lime);
+        padding: 48px 32px;
+        min-height: 230px;
+      }
+      .stat-number {
+        font: 700 clamp(42px, 7vw, 92px) Unbounded;
+        letter-spacing: -0.08em;
+      }
+      .stat-label {
+        font: 600 12px DM Mono;
+        text-transform: uppercase;
+        max-width: 150px;
+        margin-top: 10px;
+      }
+      .about {
+        background: var(--paper);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 55px;
+        align-items: center;
+      }
+      .about-visual {
+        aspect-ratio: 1/1.12;
+        border-radius: 30px;
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-placeholder {
+        position: absolute;
+        inset: 20px;
+        border: 1px dashed #ffffff40;
+        border-radius: 22px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .about-placeholder b {
+        font: 700 35px Unbounded;
+        color: var(--lime);
+      }
+      .about-placeholder span {
+        font: 500 11px DM Mono;
+        color: #aaa;
+        margin-top: 12px;
+      }
+      .about-copy h2 {
+        font-size: clamp(40px, 6vw, 78px);
+        margin: 18px 0 25px;
+      }
+      .about-copy > p {
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.7;
+        max-width: 600px;
+      }
+      .loves {
+        margin-top: 38px;
+        border-top: 1px solid var(--line);
+      }
+      .love {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        padding: 17px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .heart {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+      }
+      .contact {
+        background: var(--paper);
+        padding-bottom: 40px;
+      }
+      .contact-inner {
+        background: var(--ink);
+        color: #fff;
+        border-radius: 34px;
+        padding: clamp(42px, 7vw, 90px);
+        overflow: hidden;
+        position: relative;
+      }
+      .contact h2 {
+        font-size: clamp(42px, 8vw, 110px);
+        max-width: 1000px;
+        margin-bottom: 35px;
+      }
+      .contact h2 span {
+        color: var(--lime);
+      }
+      .contact-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 70px;
+        border-top: 1px solid #ffffff29;
+      }
+      .detail {
+        padding: 24px 0;
+      }
+      .detail label {
+        display: block;
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+        color: #77737a;
+        margin-bottom: 8px;
+      }
+      .detail a {
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1440px;
+        margin: auto;
+        padding: 30px var(--g);
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #25d366;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        z-index: 45;
+        box-shadow: 0 12px 30px #0003;
+        transform: scale(0);
+        transition: transform 0.7s var(--ease);
+      }
+      .whatsapp.show {
+        transform: scale(1);
+      }
+      .whatsapp svg {
+        width: 25px;
+        height: 25px;
+        fill: currentColor;
+      }
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-card {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: min(74vw, 320px);
+          margin: 20px auto 0;
+        }
+        .projects {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-details {
+          grid-template-columns: 1fr;
+        }
+        .detail {
+          border-bottom: 1px solid #ffffff29;
+        }
+        .section-head,
+        .services-head {
+          display: block;
+        }
+        .section-head p,
+        .services-intro {
+          margin-top: 20px;
+        }
+      }
+      @media (max-width: 650px) {
+        .nav {
+          left: auto;
+          right: 14px;
+          transform: translateY(-150%);
+          width: auto;
+        }
+        .nav.visible {
+          transform: translateY(0);
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero h1 {
+          font-size: clamp(48px, 14vw, 75px);
+        }
+        .hero-card {
+          width: min(78vw, 320px);
+        }
+        .projects {
+          grid-template-columns: 1fr;
+        }
+        .project-visual {
+          height: min(70vw, 400px);
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat {
+          padding: 30px 20px;
+          min-height: 155px;
+        }
+        .service {
+          grid-template-columns: 40px 1fr 42px;
+        }
+        .service p {
+          max-width: 270px;
+        }
+        .contact-inner {
+          border-radius: 24px;
+        }
+        .contact-details {
+          gap: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *:before,
+        *:after {
+          scroll-behavior: auto !important;
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .nav {
+          transform: translate(-50%, 0);
+        }
+        .whatsapp {
+          transform: scale(1);
+        }
+      }
+
+      /* Contact nav alignment fix */
+      .nav-contact,
+      .contact-trigger {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        line-height: 1 !important;
+      }
+      .nav-contact .arrow,
+      .contact-trigger .arrow,
+      .nav-contact svg,
+      .contact-trigger svg {
+        display: block !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        transform: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav" id="nav">
+      <a class="logo" href="#top"><span class="logo-dot"></span>MKAY</a>
+      <nav class="nav-links">
+        <a href="#work">Work</a><a href="#about">About</a
+        ><a href="#services">Services</a>
+      </nav>
+      <div class="nav-contact">
+        <button
+          class="nav-cta"
+          id="contactToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="contactMenu"
+        >
+          <span class="dot"></span>Contact me <span class="chevron">⌄</span>
+        </button>
+        <div
+          class="contact-menu"
+          id="contactMenu"
+          role="menu"
+          aria-hidden="true"
+        >
+          <a href="mailto:your@email.com" role="menuitem"
+            ><span class="contact-icon">✉</span
+            ><span
+              ><strong>Email me</strong><small>Send me an email</small></span
+            ></a
+          ><a href="#contact" role="menuitem"
+            ><span class="contact-icon">◉</span
+            ><span
+              ><strong>WhatsApp me</strong
+              ><small>Start a WhatsApp chat</small></span
+            ></a
+          >
+        </div>
+      </div>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-kicker reveal">
+              <span></span> Product Designer · Developer
+            </div>
+            <h1 class="display reveal">
+              I design and
+              <span class="accent">build digital products</span> people actually
+              use.
+            </h1>
+            <p class="hero-sub reveal">
+              I’m a Product Designer and Developer focused on turning ideas into
+              clean, functional digital experiences — from product strategy and
+              UI/UX to the code that brings them to life.
+            </p>
+            <div class="hero-actions reveal">
+              <a class="btn primary" href="#work">View my work ↗</a
+              ><a class="btn secondary" href="#contact">Let's work together</a>
+            </div>
+          </div>
+          <div aria-hidden="true">
+            <div class="hero-orb"></div>
+            <div class="hero-card">
+              <div class="mini">MKAY / 001</div>
+              <strong>PRODUCT<br />DESIGNER<br />+ DEVELOPER</strong>
+              <div class="bottom">
+                <span>UI/UX · FRONTEND</span><span>09—26</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="marquee-item">PRODUCT DESIGN</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">UI/UX</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">FIGMA</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">DESIGN SYSTEMS</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">FRONTEND DEVELOPMENT</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">HTML</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">CSS</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">JAVASCRIPT</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">REACT</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">AI</div>
+          <span class="marquee-star">✦</span>
+          <div class="marquee-item">PROTOTYPING</div>
+          <span class="marquee-star">✦</span>
+        </div>
+      </div>
+      <section class="work" id="work">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 class="display">Selected work</h2>
+            <p>
+              Products, platforms and interfaces designed around real users,
+              real constraints and real problems.
+            </p>
+          </div>
+          <div class="projects">
+            <a class="project reveal scale" href="uniflow.html"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>UNIFLOW</b><span>View case study ↗</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">UniFlow</div>
+                  <div class="project-cat">Education · Campus productivity</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            ><a class="project reveal scale" href="#"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>DRIVEHUB</b><span>Drop project screenshot here</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">DriveHub</div>
+                  <div class="project-cat">Mobility · Car rental</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            ><a class="project reveal scale" href="#"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>RACOOL HUB</b><span>Drop project screenshot here</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">Racool Hub</div>
+                  <div class="project-cat">Marketplace · Logistics</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            ><a class="project reveal scale" href="#"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>ENERGIZE</b><span>Drop project screenshot here</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">Energize</div>
+                  <div class="project-cat">Web design</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            ><a class="project reveal scale" href="kynda.html"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>KYNDA</b><span>Drop project screenshot here</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">Kynda</div>
+                  <div class="project-cat">Education · Product UI</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            ><a class="project reveal scale" href="#"
+              ><div class="project-visual">
+                <div class="placeholder">
+                  <b>MORE WORK</b><span>Drop project screenshot here</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <div>
+                  <div class="project-name">More work</div>
+                  <div class="project-cat">UI/UX · Product design</div>
+                </div>
+                <span class="project-arrow">↗</span>
+              </div></a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="services" id="services">
+        <div class="container">
+          <div class="services-head reveal">
+            <h2 class="display">What I do</h2>
+            <p class="services-intro">
+              From idea to interface to working product — I design the
+              experience and build what brings it to life.
+            </p>
+          </div>
+          <div class="service-list">
+            <div class="service reveal left">
+              <span class="service-no">01</span>
+              <div>
+                <h3>Product Designer</h3>
+                <p>
+                  Product strategy, user flows, wireframes, UI/UX and
+                  high-fidelity interfaces.
+                </p>
+              </div>
+              <span class="service-icon">✦</span>
+            </div>
+            <div class="service reveal right">
+              <span class="service-no">02</span>
+              <div>
+                <h3>UI / UX Designer</h3>
+                <p>
+                  Clean, intuitive interfaces, prototypes, design systems and
+                  responsive experiences.
+                </p>
+              </div>
+              <span class="service-icon">↗</span>
+            </div>
+            <div class="service reveal left">
+              <span class="service-no">03</span>
+              <div>
+                <h3>Developer</h3>
+                <p>
+                  Turning designs into functional, responsive websites and
+                  digital products with HTML, CSS and JavaScript.
+                </p>
+              </div>
+              <span class="service-icon">＋</span>
+            </div>
+            <div class="service reveal right">
+              <span class="service-no">04</span>
+              <div>
+                <h3>AI + Product</h3>
+                <p>
+                  Designing and building practical AI-powered experiences while
+                  exploring new AI tools and workflows.
+                </p>
+              </div>
+              <span class="service-icon">AI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat reveal">
+              <div class="stat-number" data-count="20">0</div>
+              <div class="stat-label">Projects / concepts</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-number" data-count="10">0</div>
+              <div class="stat-label">Product experiences</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-number" data-count="5">0</div>
+              <div class="stat-label">Design disciplines</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Years learning & building</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="about" id="about">
+        <div class="container about-grid">
+          <div class="about-visual reveal left">
+            <div class="about-placeholder">
+              <b>YOUR PHOTO</b><span>Drop portrait here</span>
+            </div>
+          </div>
+          <div class="about-copy reveal right">
+            <div class="eyebrow">A little about me</div>
+            <h2 class="display">
+              Designing with curiosity. Building with intent.
+            </h2>
+            <p>
+              I'm MKAY, a product designer focused on creating digital
+              experiences that feel simple, useful and intentional. I work
+              across UI/UX, product thinking and increasingly the space between
+              design and code.
+            </p>
+            <div class="loves">
+              <div class="love">
+                <span class="heart">♡</span> Clean, friendly interfaces
+              </div>
+              <div class="love">
+                <span class="heart">♡</span> Products that solve real problems
+              </div>
+              <div class="love">
+                <span class="heart">♡</span> Turning ideas into usable
+                experiences
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="contact-inner reveal">
+            <div class="eyebrow">Let's build something</div>
+            <h2 class="display">
+              Have an idea?<br /><span>Let's make it usable.</span>
+            </h2>
+            <div class="hero-actions">
+              <a
+                class="btn primary"
+                href="mailto:your@email.com?subject=Project%20enquiry"
+                >Contact me ↗</a
+              ><a
+                class="btn secondary"
+                href="?text=Hi%20MKAY%2C%20I'd%20like%20to%20work%20with%20you."
+                target="_blank"
+                >WhatsApp ↗</a
+              >
+            </div>
+            <div class="contact-details">
+              <div class="detail">
+                <label>Email</label
+                ><a href="mailto:your@email.com">your@email.com</a>
+              </div>
+              <div class="detail">
+                <label>WhatsApp</label><a href="">Add WhatsApp number</a>
+              </div>
+              <div class="detail">
+                <label>Social</label><a href="#">@mkay</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <span>© 2026 MKAY</span><a href="#top">Back to top ↑</a>
+    </footer>
+    <a
+      class="whatsapp"
+      id="whatsapp"
+      href="?text=Hi%20MKAY%2C%20I'd%20like%20a%20quote%20for%20a%20project."
+      target="_blank"
+      aria-label="Chat with MKAY on WhatsApp"
+      ><svg viewBox="0 0 24 24">
+        <path
+          d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.1-3.5-8.3Zm-8.4 18.1h-.1c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.8 1 1-3.7-.2-.3a9.8 9.8 0 0 1-1.5-5.2C2.4 6.4 6.8 2 12.1 2c2.6 0 5.1 1 7 2.9s2.9 4.3 2.9 6.9c0 5.4-4.4 9.8-9.9 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2c-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-1.9-.9-3.2-1.6-4.4-3.6-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.2-.6-.4Z"
+        /></svg
+    ></a>
+    <script>
+      const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches,
+        nav = document.getElementById("nav"),
+        wa = document.getElementById("whatsapp");
+      function chrome() {
+        if (scrollY > innerHeight * 0.55) {
+          nav.classList.add("visible");
+          wa.classList.add("show");
+        } else {
+          nav.classList.remove("visible");
+          wa.classList.remove("show");
+        }
+      }
+      addEventListener("scroll", chrome, { passive: true });
+      chrome();
+      const els = document.querySelectorAll(".reveal");
+      if (!reduce) {
+        const io = new IntersectionObserver(
+          (es) =>
+            es.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.18 },
+        );
+        els.forEach((e) => io.observe(e));
+      } else els.forEach((e) => e.classList.add("in"));
+      const counters = document.querySelectorAll("[data-count]");
+      let counted = false;
+      new IntersectionObserver(
+        (es) => {
+          if (es.some((e) => e.isIntersecting) && !counted) {
+            counted = true;
+            counters.forEach((el) => {
+              const end = +el.dataset.count,
+                start = performance.now();
+              function tick(t) {
+                let p = Math.min((t - start) / 1400, 1),
+                  v = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(end * v) + (end > 9 ? "+" : "");
+                if (p < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            });
+          }
+        },
+        { threshold: 0.5 },
+      ).observe(counters[0]);
+      if (!reduce)
+        document.querySelectorAll(".btn").forEach((b) => {
+          b.addEventListener("pointermove", (e) => {
+            if (innerWidth < 900) return;
+            let r = b.getBoundingClientRect();
+            b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.12}px,${(e.clientY - r.top - r.height / 2) * 0.12}px)`;
+          });
+          b.addEventListener("pointerleave", () => (b.style.transform = ""));
+        });
+    </script>
+    <script>
+      const contactToggle = document.getElementById("contactToggle");
+      const contactWrap = document.querySelector(".nav-contact");
+      const contactMenu = document.getElementById("contactMenu");
+      if (contactToggle) {
+        contactToggle.addEventListener("click", () => {
+          const open = contactWrap.classList.toggle("open");
+          contactToggle.setAttribute("aria-expanded", String(open));
+          contactMenu.setAttribute("aria-hidden", String(!open));
+        });
+        document.addEventListener("click", (e) => {
+          if (!contactWrap.contains(e.target)) {
+            contactWrap.classList.remove("open");
+            contactToggle.setAttribute("aria-expanded", "false");
+            contactMenu.setAttribute("aria-hidden", "true");
+          }
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            contactWrap.classList.remove("open");
+            contactToggle.setAttribute("aria-expanded", "false");
+            contactMenu.setAttribute("aria-hidden", "true");
+            contactToggle.focus();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

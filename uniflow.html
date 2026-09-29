@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="UniFlow — a campus productivity platform designed by MKAY."
+    />
+    <title>UniFlow — MKAY</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap");
+      :root {
+        --ink: #17151b;
+        --paper: #f6f3ee;
+        --lime: #c9ff45;
+        --muted: #77727d;
+        --line: rgba(23, 21, 27, 0.14);
+        --g: clamp(20px, 5vw, 80px);
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Manrope, Arial, sans-serif;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--lime);
+      }
+      .nav {
+        position: fixed;
+        z-index: 20;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(calc(100% - 28px), 760px);
+        padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(23, 21, 27, 0.9);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        backdrop-filter: blur(18px);
+      }
+      .logo {
+        font-family: Unbounded;
+        font-weight: 800;
+        font-size: 14px;
+        padding: 10px 13px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 3px;
+        align-items: center;
+      }
+      .nav-links a {
+        font-size: 13px;
+        padding: 10px 13px;
+        border-radius: 999px;
+        color: #ddd;
+      }
+      .nav-links a:hover {
+        background: #ffffff1a;
+      }
+      .back {
+        background: #fff !important;
+        color: var(--ink) !important;
+        font-weight: 700;
+      }
+      .hero {
+        background: var(--ink);
+        color: #fff;
+        padding: 150px var(--g) 70px;
+        min-height: 78svh;
+        display: flex;
+        align-items: end;
+      }
+      .container {
+        width: 100%;
+        max-width: 1440px;
+        margin: auto;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: end;
+      }
+      .eyebrow {
+        font: 500 11px/1 DM Mono;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--lime);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Unbounded;
+        letter-spacing: -0.055em;
+        line-height: 0.96;
+      }
+      h1 {
+        font-size: clamp(52px, 10vw, 145px);
+        margin: 22px 0 28px;
+        max-width: 1050px;
+      }
+      .hero p {
+        max-width: 650px;
+        color: #c9c6ca;
+        font-size: clamp(16px, 2vw, 21px);
+        line-height: 1.6;
+      }
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: #ffffff22;
+        border: 1px solid #ffffff22;
+        margin-top: 42px;
+        max-width: 620px;
+      }
+      .meta div {
+        padding: 20px;
+        background: #17151b;
+      }
+      .meta label {
+        display: block;
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+        color: #99969d;
+        margin-bottom: 8px;
+      }
+      .meta strong {
+        font-size: 14px;
+      }
+      .hero-shot {
+        aspect-ratio: 4/5;
+        background: #25222a;
+        border: 1px solid #ffffff22;
+        border-radius: 28px;
+        padding: 12px;
+        transform: rotate(3deg);
+      }
+      .placeholder {
+        height: 100%;
+        border: 1px dashed #ffffff45;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 25px;
+        color: #aaa;
+      }
+      .placeholder b {
+        font: 700 clamp(26px, 4vw, 55px) Unbounded;
+        color: var(--lime);
+      }
+      .placeholder span {
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+        margin-top: 12px;
+      }
+      .section {
+        padding: clamp(80px, 11vw, 150px) var(--g);
+      }
+      .section.dark {
+        background: var(--ink);
+        color: #fff;
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 70px;
+      }
+      .section h2 {
+        font-size: clamp(38px, 6vw, 82px);
+        margin: 15px 0 25px;
+      }
+      .copy {
+        max-width: 760px;
+        font-size: 18px;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+      .dark .copy {
+        color: #aaa7ae;
+      }
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line);
+        margin-top: 55px;
+      }
+      .role {
+        background: var(--paper);
+        padding: 30px;
+        min-height: 170px;
+      }
+      .role label {
+        font: 500 10px DM Mono;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .role strong {
+        display: block;
+        margin-top: 35px;
+        font-size: 17px;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 55px;
+      }
+      .feature {
+        background: #fff;
+        border: 1px solid #17151b12;
+        border-radius: 25px;
+        padding: 10px;
+        box-shadow: 0 18px 45px #17151b0c;
+      }
+      .feature-visual {
+        aspect-ratio: 16/10;
+        border-radius: 18px;
+        background: #e8e4de;
+        overflow: hidden;
+      }
+      .feature-text {
+        padding: 22px 16px 20px;
+      }
+      .feature h3 {
+        font-size: 22px;
+        margin: 0 0 10px;
+      }
+      .feature p {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 14px;
+        margin: 0;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+        margin-top: 55px;
+      }
+      .screen {
+        background: #e9e6e0;
+        border-radius: 22px;
+        padding: 9px;
+        min-height: 430px;
+      }
+      .screen .placeholder {
+        border-color: #17151b3b;
+        color: var(--muted);
+      }
+      .screen .placeholder b {
+        color: var(--ink);
+        font-size: 28px;
+      }
+      .screen:nth-child(1) {
+        grid-column: span 7;
+      }
+      .screen:nth-child(2) {
+        grid-column: span 5;
+      }
+      .screen:nth-child(3) {
+        grid-column: span 5;
+      }
+      .screen:nth-child(4) {
+        grid-column: span 7;
+      }
+      .screen:nth-child(5) {
+        grid-column: span 4;
+      }
+      .screen:nth-child(6) {
+        grid-column: span 4;
+      }
+      .screen:nth-child(7) {
+        grid-column: span 4;
+      }
+      .process {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: #ffffff22;
+        margin-top: 55px;
+      }
+      .step {
+        background: var(--ink);
+        border: 1px solid #ffffff22;
+        padding: 28px;
+        min-height: 240px;
+      }
+      .step-no {
+        color: var(--lime);
+        font: 500 11px DM Mono;
+      }
+      .step h3 {
+        font-size: 21px;
+        margin: 45px 0 12px;
+      }
+      .step p {
+        color: #aaa7ae;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .takeaways {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        align-items: start;
+      }
+      .list {
+        border-top: 1px solid var(--line);
+      }
+      .item {
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        gap: 15px;
+      }
+      .item b {
+        font: 500 11px DM Mono;
+      }
+      .item strong {
+        font-size: 15px;
+      }
+      .item p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .cta {
+        background: var(--lime);
+        padding: 100px var(--g);
+      }
+      .cta-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        align-items: end;
+      }
+      .cta h2 {
+        font-size: clamp(42px, 7vw, 95px);
+        max-width: 900px;
+        margin: 15px 0 0;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--ink);
+        color: #fff;
+        padding: 16px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .footer {
+        padding: 25px var(--g);
+        display: flex;
+        justify-content: space-between;
+        background: var(--paper);
+        font: 500 11px DM Mono;
+        text-transform: uppercase;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 900px) {
+        .nav-links a:not(.back) {
+          display: none;
+        }
+        .hero {
+          padding-top: 120px;
+        }
+        .hero-grid,
+        .intro-grid,
+        .takeaways {
+          grid-template-columns: 1fr;
+        }
+        .hero-shot {
+          max-width: 430px;
+          width: 80%;
+          justify-self: center;
+        }
+        .role-grid,
+        .process {
+          grid-template-columns: 1fr 1fr;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .screen,
+        .screen:nth-child(n) {
+          grid-column: span 1;
+          min-height: 330px;
+        }
+        .cta-inner {
+          align-items: start;
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 560px) {
+        .role-grid,
+        .process,
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+        .screen,
+        .screen:nth-child(n) {
+          grid-column: span 1;
+          min-height: 300px;
+        }
+        .meta {
+          grid-template-columns: 1fr;
+        }
+        .hero-shot {
+          width: 100%;
+        }
+        .footer {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+      .project-links .btn {
+        font-size: 13px;
+        padding: 13px 17px;
+      }
+      .project-links .primary {
+        background: var(--lime);
+        color: var(--ink);
+      }
+      .project-links .secondary {
+        background: transparent;
+        border: 1px solid #ffffff35;
+        color: #fff;
+      }
+      .project-links .secondary:hover {
+        background: #ffffff12;
+      }
+      @media (max-width: 560px) {
+        .project-links {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .project-links .btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="logo" href="portfolio.html">MKAY</a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a><a href="#process">Process</a
+        ><a href="#screens">Screens</a><a href="#reels">Reels</a
+        ><a class="back" href="portfolio.html#work">← Back to work</a>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Selected work · 01</div>
+          <h1>UniFlow</h1>
+          <p>
+            A campus productivity platform concept designed to bring students'
+            schedules, classes, assignments, tests, materials and important
+            updates into one focused experience.
+          </p>
+          <div class="project-links">
+            <a
+              class="btn primary"
+              href="#"
+              aria-label="View live UniFlow project"
+              >↗ View Live Project</a
+            ><a
+              class="btn secondary"
+              href="WadeScribe Mobile Prototype.html"
+              aria-label="View UniFlow prototype"
+              >↗ View Prototype</a
+            >
+          </div>
+          <div class="meta">
+            <div><label>Role</label><strong>Product Designer</strong></div>
+            <div>
+              <label>Focus</label><strong>UI/UX · Product Design</strong>
+            </div>
+            <div><label>Platform</label><strong>Web + Mobile</strong></div>
+            <div><label>Status</label><strong>MVP in progress</strong></div>
+          </div>
+        </div>
+        <div class="hero-shot">
+          <div class="placeholder">
+            <b>UNIFLOW</b
+            ><span>Hero product screenshot<br />Drop image here</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="intro-grid">
+          <div>
+            <div class="eyebrow">01 · Overview</div>
+            <h2>The campus, organized.</h2>
+          </div>
+          <div>
+            <p class="copy">
+              UniFlow is designed around a simple problem: important academic
+              information is often scattered across chats, class announcements,
+              personal notes and different tools. The product brings the most
+              useful student workflows into one place without trying to replace
+              every tool a student already uses.
+            </p>
+            <p class="copy">
+              The MVP focuses on the everyday academic loop — knowing what is
+              happening next, finding course information, keeping up with
+              assignments and tests, accessing materials, and receiving the
+              right notification at the right time.
+            </p>
+          </div>
+        </div>
+        <div class="role-grid">
+          <div class="role">
+            <label>01 · Role</label><strong>Product Designer</strong>
+          </div>
+          <div class="role">
+            <label>02 · Scope</label><strong>Research → IA → UI</strong>
+          </div>
+          <div class="role">
+            <label>03 · Design</label><strong>Figma · Components</strong>
+          </div>
+          <div class="role">
+            <label>04 · Direction</label><strong>Design + Frontend</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section dark">
+      <div class="container">
+        <div class="eyebrow">02 · The problem</div>
+        <h2>Students don't need more noise.</h2>
+        <p class="copy">
+          The experience is designed around reducing the friction of finding
+          academic information. Instead of making every feature compete for
+          attention, UniFlow prioritizes the next useful action and separates
+          normal updates from genuinely important ones.
+        </p>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-visual">
+              <div class="placeholder">
+                <b>HOME</b><span>Home dashboard screenshot</span>
+              </div>
+            </div>
+            <div class="feature-text">
+              <h3>One useful home</h3>
+              <p>
+                A focused dashboard for upcoming classes, important updates and
+                the information a student is most likely to need next.
+              </p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-visual">
+              <div class="placeholder">
+                <b>UPDATES</b><span>Updates feed screenshot</span>
+              </div>
+            </div>
+            <div class="feature-text">
+              <h3>One notification system</h3>
+              <p>
+                Important updates can take over the Home priority slot until
+                they are acknowledged, while the full Updates feed keeps the
+                complete history.
+              </p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-visual">
+              <div class="placeholder">
+                <b>REELS</b><span>Reels feed screenshot</span>
+              </div>
+            </div>
+            <div class="feature-text">
+              <h3>Campus Reels</h3>
+              <p>
+                A short-form discovery space for student-created content, campus
+                moments, events, tips and community content, kept separate from
+                official academic updates.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="reels">
+      <div class="container">
+        <div class="eyebrow">03 · Reels</div>
+        <h2>Discovery for campus life.</h2>
+        <div class="intro-grid">
+          <div>
+            <p class="copy">
+              Reels gives UniFlow a social layer where students can discover and
+              share short-form campus content. It is designed for engagement and
+              discovery rather than replacing the product's academic
+              communication system.
+            </p>
+          </div>
+          <div>
+            <p class="copy">
+              <strong>Updates</strong> remains the source for official academic
+              information, announcements and priority notifications.
+              <strong>Reels</strong> is for discovery, entertainment and
+              community content.
+            </p>
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="screen">
+            <div class="placeholder"><b>01</b><span>Reels feed</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>02</b><span>Reel view</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>03</b><span>Create Reel</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>04</b><span>Engagement</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>05</b><span>Edge states</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="eyebrow">03 · Product screens</div>
+        <h2>Designed around the student workflow.</h2>
+        <p class="copy">
+          This gallery is intentionally prepared for the final case-study
+          screenshots. Drop the actual Figma exports into each slot as the
+          screens are completed.
+        </p>
+        <div class="gallery">
+          <div class="screen">
+            <div class="placeholder"><b>01</b><span>Home</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>02</b><span>Timetable</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>03</b><span>Course details</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder">
+              <b>04</b><span>Course materials</span>
+            </div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>05</b><span>Assignments</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>06</b><span>Tests</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>07</b><span>Updates</span></div>
+          </div>
+          <div class="screen">
+            <div class="placeholder"><b>08</b><span>Reels</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section dark" id="process">
+      <div class="container">
+        <div class="eyebrow">04 · Design process</div>
+        <h2>From messy problem to usable system.</h2>
+        <div class="process">
+          <div class="step">
+            <div class="step-no">01</div>
+            <h3>Understand</h3>
+            <p>
+              Identify the recurring student tasks, information gaps and moments
+              where communication becomes noisy or easy to miss.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-no">02</div>
+            <h3>Structure</h3>
+            <p>
+              Build the information architecture around courses, timetable,
+              tasks, updates and the student's immediate priorities.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-no">03</div>
+            <h3>Design</h3>
+            <p>
+              Translate the structure into reusable components, consistent card
+              patterns, responsive layouts and clear states.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-no">04</div>
+            <h3>Validate</h3>
+            <p>
+              Review the flows, edge cases and screen relationships before
+              handing the product direction to development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container takeaways">
+        <div>
+          <div class="eyebrow">05 · Key decisions</div>
+          <h2>Small details matter.</h2>
+          <p class="copy">
+            The strongest parts of UniFlow are not necessarily the biggest
+            screens. They are the rules connecting them.
+          </p>
+        </div>
+        <div class="list">
+          <div class="item">
+            <b>01</b>
+            <div>
+              <strong
+                >Priority updates are a view, not a separate system.</strong
+              >
+              <p>
+                Home, Updates and Class Details can surface the same underlying
+                notification data in different contexts.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <b>02</b>
+            <div>
+              <strong>Class reminders live inside Class Details.</strong>
+              <p>
+                The reminder action stays close to the class it belongs to
+                rather than becoming another primary navigation item.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <b>03</b>
+            <div>
+              <strong>AI stays secondary in the MVP.</strong>
+              <p>
+                The product's core value is the academic workflow; AI can
+                enhance it without becoming the product's main navigation
+                priority.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <b>04</b>
+            <div>
+              <strong
+                >Course materials are part of the course experience.</strong
+              >
+              <p>
+                Materials should be discoverable from the relevant course
+                instead of forcing students into a disconnected document area.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <div class="eyebrow">Next project</div>
+          <h2>More work, more products, more experiments.</h2>
+        </div>
+        <a class="btn" href="portfolio.html#work">Back to selected work ↗</a>
+      </div>
+    </section>
+    <footer class="footer">
+      <span>© 2026 MKAY · UniFlow Case Study</span
+      ><a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
