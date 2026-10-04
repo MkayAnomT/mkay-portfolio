@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="UniFlow — a campus productivity platform designed by MKAY."
+      content="WadeScribe — a campus productivity platform designed by Erinfolami Abdulmaliq."
     />
-    <title>UniFlow — MKAY</title>
+    <title>WadeScribe — Erinfolami Abdulmaliq</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap");
       :root {
@@ -477,22 +477,108 @@
           justify-content: center;
         }
       }
+      /* Screenshots */
+      .feature h3 {
+        color: var(--ink);
+      }
+      @media (min-width: 901px) {
+        .feature-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .hero-shot img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+      .feature-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .gallery.phones {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .gallery.phones.five {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .gallery.phones .screen {
+        grid-column: auto;
+        min-height: 0;
+        margin: 0;
+      }
+      .screen img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+      }
+      .screen figcaption {
+        font: 500 10px DM Mono;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        padding: 12px 4px 3px;
+      }
+      @media (max-width: 900px) {
+        .gallery.phones,
+        .gallery.phones.five {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .gallery.phones,
+        .gallery.phones.five {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .gallery.phones .screen {
+          min-height: 0;
+        }
+      }
+      .project-links .btn.disabled {
+        background: transparent;
+        border: 1px solid #ffffff22;
+        color: #ffffff66;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .project-links .btn.disabled:hover {
+        transform: none;
+      }
+      .logo,
+      .nav-cta,
+      .nav-links .back {
+        white-space: nowrap;
+      }
+      @media (max-width: 380px) {
+        .logo {
+          font-size: 12px;
+        }
+        .nav-cta,
+        .nav-links .back {
+          font-size: 12px;
+        }
+      }
     </style>
   </head>
   <body>
     <nav class="nav">
-      <a class="logo" href="index.html">MKAY</a>
+      <a class='logo' href='/'>Erinfolami Abdulmaliq</a>
       <div class="nav-links">
         <a href="#overview">Overview</a><a href="#process">Process</a
         ><a href="#screens">Screens</a><a href="#reels">Reels</a
-        ><a class="back" href="index.html#work">← Back to work</a>
+        ><a class='back' href='/#work'>← Back to work</a>
       </div>
     </nav>
     <header class="hero">
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Selected work · 01</div>
-          <h1>UniFlow</h1>
+          <h1>WadeScribe</h1>
           <p>
             A campus productivity platform concept designed to bring students'
             schedules, classes, assignments, tests, materials and important
@@ -501,14 +587,14 @@
           <div class="project-links">
             <a
               class="btn primary"
-              href="#"
-              aria-label="View live UniFlow project"
-              >↗ View Live Project</a
-            ><a
-              class="btn secondary"
               href="WadeScribe Mobile Prototype.html"
-              aria-label="View UniFlow prototype"
+              aria-label="View WadeScribe prototype"
               >↗ View Prototype</a
+            ><span
+              class="btn secondary disabled"
+              aria-disabled="true"
+              title="Link coming soon"
+              >↗ View Live Project</span
             >
           </div>
           <div class="meta">
@@ -521,10 +607,12 @@
           </div>
         </div>
         <div class="hero-shot">
-          <div class="placeholder">
-            <b>UNIFLOW</b
-            ><span>Hero product screenshot<br />Drop image here</span>
-          </div>
+          <img
+            src="images/wadescribe-cover.webp"
+            alt="WadeScribe Today and Timetable screens"
+            width="1080"
+            height="1350"
+          />
         </div>
       </div>
     </header>
@@ -537,7 +625,7 @@
           </div>
           <div>
             <p class="copy">
-              UniFlow is designed around a simple problem: important academic
+              WadeScribe is designed around a simple problem: important academic
               information is often scattered across chats, class announcements,
               personal notes and different tools. The product brings the most
               useful student workflows into one place without trying to replace
@@ -574,15 +662,19 @@
         <p class="copy">
           The experience is designed around reducing the friction of finding
           academic information. Instead of making every feature compete for
-          attention, UniFlow prioritizes the next useful action and separates
+          attention, WadeScribe prioritizes the next useful action and separates
           normal updates from genuinely important ones.
         </p>
         <div class="feature-grid">
           <article class="feature">
             <div class="feature-visual">
-              <div class="placeholder">
-                <b>HOME</b><span>Home dashboard screenshot</span>
-              </div>
+              <img
+                src="images/wadescribe/feature-home.webp"
+                alt="WadeScribe Today home and the new-account home"
+                width="1600"
+                height="1000"
+                loading="lazy"
+              />
             </div>
             <div class="feature-text">
               <h3>One useful home</h3>
@@ -594,9 +686,13 @@
           </article>
           <article class="feature">
             <div class="feature-visual">
-              <div class="placeholder">
-                <b>UPDATES</b><span>Updates feed screenshot</span>
-              </div>
+              <img
+                src="images/wadescribe/feature-updates.webp"
+                alt="WadeScribe notification centre and notification preferences"
+                width="1600"
+                height="1000"
+                loading="lazy"
+              />
             </div>
             <div class="feature-text">
               <h3>One notification system</h3>
@@ -609,9 +705,13 @@
           </article>
           <article class="feature">
             <div class="feature-visual">
-              <div class="placeholder">
-                <b>REELS</b><span>Reels feed screenshot</span>
-              </div>
+              <img
+                src="images/wadescribe/feature-reels.webp"
+                alt="WadeScribe Reels feed and comments"
+                width="1600"
+                height="1000"
+                loading="lazy"
+              />
             </div>
             <div class="feature-text">
               <h3>Campus Reels</h3>
@@ -632,7 +732,7 @@
         <div class="intro-grid">
           <div>
             <p class="copy">
-              Reels gives UniFlow a social layer where students can discover and
+              Reels gives WadeScribe a social layer where students can discover and
               share short-form campus content. It is designed for engagement and
               discovery rather than replacing the product's academic
               communication system.
@@ -647,67 +747,156 @@
             </p>
           </div>
         </div>
-        <div class="gallery">
-          <div class="screen">
-            <div class="placeholder"><b>01</b><span>Reels feed</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>02</b><span>Reel view</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>03</b><span>Create Reel</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>04</b><span>Engagement</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>05</b><span>Edge states</span></div>
-          </div>
+        <div class="gallery phones five">
+          <figure class="screen">
+            <img
+              src="images/wadescribe/reels.webp"
+              alt="Reels feed with For you and Following"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>01 · Reels feed</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/reel-paused.webp"
+              alt="A paused reel with the scrubber"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>02 · Reel view</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/reel-caption.webp"
+              alt="Caption and audience settings for a new reel"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>03 · Create Reel</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/reel-comments.webp"
+              alt="Comments on a reel"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>04 · Engagement</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/reel-rejected.webp"
+              alt="A reel that did not pass review"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>05 · Edge states</figcaption>
+          </figure>
         </div>
       </div>
     </section>
     <section class="section" id="screens">
       <div class="container">
-        <div class="eyebrow">03 · Product screens</div>
+        <div class="eyebrow">04 · Product screens</div>
         <h2>Designed around the student workflow.</h2>
         <p class="copy">
-          This gallery is intentionally prepared for the final case-study
-          screenshots. Drop the actual Figma exports into each slot as the
-          screens are completed.
+          Screens from the interactive WadeScribe prototype, covering the
+          everyday loop: what's next, what changed, the course community, the
+          work that's due and the updates that matter.
         </p>
-        <div class="gallery">
-          <div class="screen">
-            <div class="placeholder"><b>01</b><span>Home</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>02</b><span>Timetable</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>03</b><span>Course details</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder">
-              <b>04</b><span>Course materials</span>
-            </div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>05</b><span>Assignments</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>06</b><span>Tests</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>07</b><span>Updates</span></div>
-          </div>
-          <div class="screen">
-            <div class="placeholder"><b>08</b><span>Reels</span></div>
-          </div>
+        <div class="gallery phones">
+          <figure class="screen">
+            <img
+              src="images/wadescribe/home.webp"
+              alt="Today home with next class and what changed"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>01 · Home</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/timetable.webp"
+              alt="Day timetable with cancelled and moved classes"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>02 · Timetable</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/community-feed.webp"
+              alt="Course community feed with a pinned material"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>03 · Course community</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/material.webp"
+              alt="Lecture notes with study tools"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>04 · Course materials</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/work.webp"
+              alt="Assignment details with due date and length"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>05 · Assignments</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/upload.webp"
+              alt="Snap a timetable photo to import classes"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>06 · Add timetable</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/notifications.webp"
+              alt="Notification centre grouped by day"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>07 · Updates</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/wadescribe/discover.webp"
+              alt="Campus discover with reels grid"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>08 · Discover</figcaption>
+          </figure>
         </div>
       </div>
     </section>
     <section class="section dark" id="process">
       <div class="container">
-        <div class="eyebrow">04 · Design process</div>
+        <div class="eyebrow">05 · Design process</div>
         <h2>From messy problem to usable system.</h2>
         <div class="process">
           <div class="step">
@@ -748,10 +937,10 @@
     <section class="section">
       <div class="container takeaways">
         <div>
-          <div class="eyebrow">05 · Key decisions</div>
+          <div class="eyebrow">06 · Key decisions</div>
           <h2>Small details matter.</h2>
           <p class="copy">
-            The strongest parts of UniFlow are not necessarily the biggest
+            The strongest parts of WadeScribe are not necessarily the biggest
             screens. They are the rules connecting them.
           </p>
         </div>
@@ -810,11 +999,11 @@
           <div class="eyebrow">Next project</div>
           <h2>More work, more products, more experiments.</h2>
         </div>
-        <a class="btn" href="index.html#work">Back to selected work ↗</a>
+        <a class='btn' href='/#work'>Back to selected work ↗</a>
       </div>
     </section>
     <footer class="footer">
-      <span>© 2026 MKAY · UniFlow Case Study</span
+      <span>© 2026 Erinfolami Abdulmaliq · WadeScribe Case Study</span
       ><a href="#top">Back to top ↑</a>
     </footer>
   </body>

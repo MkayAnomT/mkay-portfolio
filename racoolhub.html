@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Kynda — an educational app concept and team project by Erinfolami Abdulmaliq."
+      content="RacoolHub — a Wi-Fi discovery and purchase app designed by Erinfolami Abdulmaliq."
     />
-    <title>Kynda — Erinfolami Abdulmaliq</title>
+    <title>RacoolHub — Erinfolami Abdulmaliq</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap");
       :root {
@@ -17,6 +17,7 @@
         --muted: #77727d;
         --line: rgba(23, 21, 27, 0.14);
         --g: clamp(20px, 5vw, 80px);
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
       }
       * {
         box-sizing: border-box;
@@ -174,28 +175,6 @@
         text-transform: uppercase;
         margin-top: 12px;
       }
-      .project-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 30px;
-      }
-      .project-links .btn {
-        font-size: 13px;
-        padding: 13px 17px;
-      }
-      .project-links .primary {
-        background: var(--lime);
-        color: var(--ink);
-      }
-      .project-links .secondary {
-        background: transparent;
-        border: 1px solid #ffffff35;
-        color: #fff;
-      }
-      .project-links .secondary:hover {
-        background: #ffffff12;
-      }
       .section {
         padding: clamp(80px, 11vw, 150px) var(--g);
       }
@@ -262,13 +241,6 @@
         background: #e8e4de;
         overflow: hidden;
       }
-      .feature-visual .placeholder {
-        border-color: #17151b3b;
-        color: var(--muted);
-      }
-      .feature-visual .placeholder b {
-        color: var(--ink);
-      }
       .feature-text {
         padding: 22px 16px 20px;
       }
@@ -321,9 +293,6 @@
         grid-column: span 4;
       }
       .screen:nth-child(7) {
-        grid-column: span 4;
-      }
-      .screen:nth-child(8) {
         grid-column: span 4;
       }
       .process {
@@ -442,6 +411,7 @@
           grid-template-columns: 1fr;
         }
         .gallery {
+          display: grid;
           grid-template-columns: 1fr 1fr;
         }
         .screen,
@@ -475,6 +445,30 @@
           flex-direction: column;
           gap: 12px;
         }
+      }
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+      .project-links .btn {
+        font-size: 13px;
+        padding: 13px 17px;
+      }
+      .project-links .primary {
+        background: var(--lime);
+        color: var(--ink);
+      }
+      .project-links .secondary {
+        background: transparent;
+        border: 1px solid #ffffff35;
+        color: #fff;
+      }
+      .project-links .secondary:hover {
+        background: #ffffff12;
+      }
+      @media (max-width: 560px) {
         .project-links {
           display: grid;
           grid-template-columns: 1fr;
@@ -484,6 +478,14 @@
         }
       }
       /* Screenshots */
+      .feature h3 {
+        color: var(--ink);
+      }
+      @media (min-width: 901px) {
+        .feature-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
       .hero-shot img {
         display: block;
         width: 100%;
@@ -537,8 +539,15 @@
           min-height: 0;
         }
       }
-      .feature h3 {
-        color: var(--ink);
+      .project-links .btn.disabled {
+        background: transparent;
+        border: 1px solid #ffffff22;
+        color: #ffffff66;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .project-links .btn.disabled:hover {
+        transform: none;
       }
       .gallery.desktops {
         grid-template-columns: 1fr 1fr;
@@ -551,20 +560,25 @@
       .gallery.desktops .screen img {
         border-radius: 12px;
       }
+      .admin-lead {
+        margin: 55px 0 0;
+        background: #e9e6e0;
+        border-radius: 22px;
+        padding: 9px;
+      }
+      .admin-lead img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+      }
+      .admin-lead + .gallery {
+        margin-top: 18px;
+      }
       @media (max-width: 560px) {
         .gallery.desktops {
           grid-template-columns: 1fr;
         }
-      }
-      .project-links .btn.disabled {
-        background: transparent;
-        border: 1px solid #ffffff22;
-        color: #ffffff66;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
-      .project-links .btn.disabled:hover {
-        transform: none;
       }
       .logo,
       .nav-cta,
@@ -586,28 +600,29 @@
     <nav class="nav">
       <a class='logo' href='/'>Erinfolami Abdulmaliq</a>
       <div class="nav-links">
-        <a href="#overview">Overview</a><a href="#features">Features</a
-        ><a href="#screens">Screens</a><a href="#process">Process</a
+        <a href="#overview">Overview</a><a href="#flow">Flow</a
+        ><a href="#screens">Screens</a><a href="#admin">Admin</a
+        ><a href="#process">Process</a
         ><a class='back' href='/#work'>← Back to work</a>
       </div>
     </nav>
     <header class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Selected work · Team project</div>
-          <h1>Kynda</h1>
+          <div class="eyebrow">Selected work · 03</div>
+          <h1>RacoolHub</h1>
           <p>
-            An educational app concept designed as a team project, focused on
-            making learning content easier to access, understand and engage with
-            through a simple digital experience.
+            A mobile app that lets people discover nearby Wi-Fi hotspots, buy
+            internet access, connect their device and manage their active plan
+            from one place.
           </p>
           <div class="project-links">
             <a
               class="btn primary"
-              href="https://www.figma.com/proto/6PSZhsmwblu7pYazG34og5/KYNDA-UI?page-id=69%3A6815&amp;node-id=95-28739&amp;viewport=448%2C566%2C0.31&amp;t=icliLNrcjr6FKMHq-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=95%3A28739"
+              href="https://www.figma.com/proto/ZGiezIhKQTjHljBTV8zhfP/RACool-Hub-%E2%80%94-Product-Design?node-id=4-4&amp;viewport=107%2C376%2C0.36&amp;t=c0GTZtMGuwMpMxw7-1&amp;scaling=contain&amp;content-scaling=fixed&amp;starting-point-node-id=4%3A4&amp;page-id=4%3A2"
               target="_blank"
               rel="noopener"
-              aria-label="View Kynda prototype in Figma"
+              aria-label="View RacoolHub prototype in Figma"
               >↗ View Prototype</a
             ><span
               class="btn secondary disabled"
@@ -622,19 +637,18 @@
             >
           </div>
           <div class="meta">
-            <div><label>Role</label><strong>UI/UX · Frontend</strong></div>
-            <div><label>Project</label><strong>Team project</strong></div>
-            <div><label>Focus</label><strong>Educational product</strong></div>
+            <div><label>Role</label><strong>Product Designer</strong></div>
             <div>
-              <label>Contribution</label
-              ><strong>HTML · CSS · JavaScript</strong>
+              <label>Focus</label><strong>UI/UX · Product Design</strong>
             </div>
+            <div><label>Platform</label><strong>Mobile · iOS + Android</strong></div>
+            <div><label>Status</label><strong>Design complete</strong></div>
           </div>
         </div>
         <div class="hero-shot">
           <img
-            src="images/kynda-cover.webp"
-            alt="Kynda parent dashboard on desktop and parent home on mobile"
+            src="images/racoolhub-cover.webp"
+            alt="RacoolHub Discover Wi-Fi and Connection screens"
             width="1080"
             height="1350"
           />
@@ -646,253 +660,461 @@
         <div class="intro-grid">
           <div>
             <div class="eyebrow">01 · Overview</div>
-            <h2>Learning, made more accessible.</h2>
+            <h2>Getting online, without the guesswork.</h2>
           </div>
           <div>
             <p class="copy">
-              Kynda is an educational product concept created as a team project.
-              The goal was to shape a digital learning experience that feels
-              clear, approachable and easy to navigate rather than overwhelming
-              the learner with unnecessary complexity.
+              Getting reliable, affordable internet in public usually means
+              searching for Wi-Fi manually, guessing at prices and data limits,
+              and fighting vouchers, portals and passwords. Once you're on, it's
+              hard to tell how much data or time is left.
             </p>
             <p class="copy">
-              My contribution focused on frontend implementation, translating
-              the team's product direction and UI decisions into responsive web
-              screens using HTML, CSS and JavaScript.
+              RacoolHub turns all of that into one transactional flow: find a
+              hotspot, choose a plan, pay, connect and stay connected. The
+              guiding principle was that getting online should feel as simple
+              as ordering a ride or paying a bill.
             </p>
           </div>
         </div>
         <div class="role-grid">
           <div class="role">
-            <label>01 · Project</label><strong>Team project</strong>
+            <label>01 · Role</label><strong>Product Designer</strong>
           </div>
           <div class="role">
-            <label>02 · Role</label><strong>Frontend Developer</strong>
+            <label>02 · Scope</label><strong>Flows → UI → Prototype</strong>
           </div>
           <div class="role">
-            <label>03 · Contribution</label
-            ><strong>HTML · CSS · JavaScript</strong>
+            <label>03 · Design</label><strong>Figma · Design system</strong>
           </div>
           <div class="role">
-            <label>04 · Focus</label><strong>Educational UX</strong>
+            <label>04 · Market</label><strong>Nigeria · ₦ pricing</strong>
           </div>
         </div>
       </div>
     </section>
-    <section class="section dark" id="features">
+    <section class="section dark">
       <div class="container">
-        <div class="eyebrow">02 · Product direction</div>
-        <h2>Simple enough to keep learning moving.</h2>
+        <div class="eyebrow">02 · The problem</div>
+        <h2>"I need internet."</h2>
         <p class="copy">
-          The interface direction centered on clear hierarchy, accessible
-          content and straightforward navigation, with separate experiences
-          for students, parents and tutors built on one shared system.
+          The people RacoolHub is designed for are students moving between
+          campus, hostel and library, remote workers who need a stable
+          connection away from home, and anyone whose mobile data is
+          unavailable or too expensive. Each of them needs to know what's
+          nearby, what it costs and what they're getting before they pay.
         </p>
         <div class="feature-grid">
           <article class="feature">
             <div class="feature-visual">
               <img
-                src="images/kynda/feature-learn.webp"
-                alt="Kynda lesson page with video and learning objectives"
-                width="1440"
-                height="900"
-                loading="lazy"
-              />
-            </div>
-            <div class="feature-text">
-              <h3>Learning experience</h3>
-              <p>
-                A focused space for learners to access educational content
-                without unnecessary navigation friction.
-              </p>
-            </div>
-          </article>
-          <article class="feature">
-            <div class="feature-visual">
-              <img
-                src="images/kynda/feature-content.webp"
-                alt="Kynda course curriculum grouped by week"
-                width="1440"
-                height="900"
-                loading="lazy"
-              />
-            </div>
-            <div class="feature-text">
-              <h3>Clear content hierarchy</h3>
-              <p>
-                Information is presented in a way that helps learners understand
-                what to do next and where to find the material they need.
-              </p>
-            </div>
-          </article>
-          <article class="feature">
-            <div class="feature-visual">
-              <img
-                src="images/kynda/feature-progress.webp"
-                alt="Kynda parent dashboard with learning progress"
-                width="1440"
-                height="900"
-                loading="lazy"
-              />
-            </div>
-            <div class="feature-text">
-              <h3>Progress & continuity</h3>
-              <p>
-                Learning states can be surfaced clearly so the experience feels
-                continuous rather than like a collection of disconnected pages.
-              </p>
-            </div>
-          </article>
-          <article class="feature">
-            <div class="feature-visual">
-              <img
-                src="images/kynda/feature-responsive.webp"
-                alt="Kynda parent dashboard on desktop next to the mobile home"
+                src="images/racoolhub/feature-discover.webp"
+                alt="RacoolHub nearby Wi-Fi list and map"
                 width="1600"
                 height="1000"
                 loading="lazy"
               />
             </div>
             <div class="feature-text">
-              <h3>Responsive interface</h3>
+              <h3>Find a hotspot nearby</h3>
               <p>
-                The frontend work focused on translating the design into layouts
-                that remain usable across different screen sizes.
+                Nearby hotspots appear as a list or on a map, with distance, opening status and a starting price on every card.
+              </p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-visual">
+              <img
+                src="images/racoolhub/feature-choose.webp"
+                alt="RacoolHub plans list and hotspot details with a plan selected"
+                width="1600"
+                height="1000"
+                loading="lazy"
+              />
+            </div>
+            <div class="feature-text">
+              <h3>Clear plans, clear prices</h3>
+              <p>
+                Three plans, priced up front: pay per GB, a 55 GB monthly bundle, or unlimited data by the hour.
+              </p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-visual">
+              <img
+                src="images/racoolhub/feature-pay.webp"
+                alt="RacoolHub checkout and payment success screens"
+                width="1600"
+                height="1000"
+                loading="lazy"
+              />
+            </div>
+            <div class="feature-text">
+              <h3>Pay with the total in view</h3>
+              <p>
+                Checkout repeats the hotspot, plan and total before payment, and the amount is always written on the pay button.
               </p>
             </div>
           </article>
         </div>
       </div>
     </section>
+    <section class="section" id="flow">
+      <div class="container">
+        <div class="eyebrow">03 · Core flow</div>
+        <h2>From hotspot to connected.</h2>
+        <div class="intro-grid">
+          <div>
+            <p class="copy">
+              The whole product is built around one loop: Find Wi-Fi → Choose a
+              plan → Pay → Connect → Stay connected. Every screen in the flow
+              has one primary action that moves the user to the next step.
+            </p>
+          </div>
+          <div>
+            <p class="copy">
+              Payment success never drops the user back on Home. Its main
+              action is <strong>Connect to Wi-Fi</strong>, and once connected,
+              the remaining data and expiry are always one tap away.
+            </p>
+          </div>
+        </div>
+        <div class="gallery phones five">
+          <figure class="screen">
+            <img
+              src="images/racoolhub/discover.webp"
+              alt="Discover Wi-Fi list of nearby hotspots"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>01 · Find Wi-Fi</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/hotspot-details.webp"
+              alt="Hotspot details with the Monthly Data Plan selected"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>02 · Choose a plan</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/checkout.webp"
+              alt="Checkout with Paystack selected and the total on the button"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>03 · Pay</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/connected.webp"
+              alt="You're connected confirmation"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>04 · Connect</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/active-connection.webp"
+              alt="Active connection with 42.5 GB remaining and 18 days left"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>05 · Stay connected</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
     <section class="section" id="screens">
       <div class="container">
-        <div class="eyebrow">03 · Product screens</div>
-        <h2>The interface in context.</h2>
+        <div class="eyebrow">04 · Product screens</div>
+        <h2>One purchase, one clear system.</h2>
         <p class="copy">
-          Screens from the Kynda designs across all three roles: onboarding,
-          the student's sessions, the parent's dashboard and approvals, and the
-          tutor's earnings and profile.
+          Beyond the core flow, the app covers the rest of the experience:
+          the connected home, the map, plans, payment progress, the wallet,
+          activity history and the profile.
         </p>
+        <div class="gallery phones">
+          <figure class="screen">
+            <img
+              src="images/racoolhub/home.webp"
+              alt="Home with the active plan card"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>01 · Home</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/discover-map.webp"
+              alt="Discover Wi-Fi on a map"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>02 · Map</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/plans.webp"
+              alt="All plans with prices"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>03 · Plans</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/payment-processing.webp"
+              alt="Payment processing"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>04 · Processing</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/payment-success.webp"
+              alt="Payment successful with transaction ID"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>05 · Payment successful</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/wallet.webp"
+              alt="Wallet balance and recent activity"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>06 · Wallet</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/activity.webp"
+              alt="Activity history of purchases and top-ups"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>07 · Activity</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/profile.webp"
+              alt="Profile and settings"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>08 · Profile</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">05 · States</div>
+        <h2>Every outcome has a next step.</h2>
+        <p class="copy">
+          Loading, offline, failed and pending are designed screens, not
+          afterthoughts. Each one uses plain language and gives the user one
+          clear way forward.
+        </p>
+        <div class="gallery phones five">
+          <figure class="screen">
+            <img
+              src="images/racoolhub/state-loading.webp"
+              alt="Discover Wi-Fi loading skeleton"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>01 · Loading</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/state-offline.webp"
+              alt="Home while offline"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>02 · Offline</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/state-payment-failed.webp"
+              alt="Payment failed with Try again"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>03 · Payment failed</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/state-payment-pending.webp"
+              alt="Payment still processing with Check payment status"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>04 · Still processing</figcaption>
+          </figure>
+          <figure class="screen">
+            <img
+              src="images/racoolhub/state-connect-failed.webp"
+              alt="Couldn't connect with Try again"
+              width="600"
+              height="1298"
+              loading="lazy"
+            />
+            <figcaption>05 · Couldn't connect</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="admin">
+      <div class="container">
+        <div class="eyebrow">06 · Admin dashboard</div>
+        <h2>The operator's side of the network.</h2>
+        <div class="intro-grid">
+          <div>
+            <p class="copy">
+              Behind the app is a web dashboard for the team running the
+              network. The Overview answers the first questions of the day:
+              how many people are connected, how much revenue came in, and
+              which hotspots need attention.
+            </p>
+          </div>
+          <div>
+            <p class="copy">
+              Each section of the sidebar has its own page, built on the same
+              design system as the mobile app. Status is always an icon plus a
+              word, never colour alone. All figures shown are demo data.
+            </p>
+          </div>
+        </div>
+        <figure class="screen admin-lead">
+          <img
+            src="images/racoolhub/admin/overview.webp"
+            alt="RacoolHub admin Overview with KPIs, revenue chart, system alerts and payment summary"
+            width="1440"
+            height="900"
+            loading="lazy"
+          />
+          <figcaption>01 · Overview</figcaption>
+        </figure>
         <div class="gallery desktops">
           <figure class="screen">
             <img
-              src="images/kynda/onboarding.webp"
-              alt="Choose whether you are a student, parent or tutor"
+              src="images/racoolhub/admin/hotspots.webp"
+              alt="RacoolHub admin Hotspots: hotspot status, active users, revenue and data sold"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>01 · Onboarding</figcaption>
+            <figcaption>02 · Hotspots</figcaption>
           </figure>
           <figure class="screen">
             <img
-              src="images/kynda/sign-up.webp"
-              alt="Create a Kynda account"
+              src="images/racoolhub/admin/transactions.webp"
+              alt="RacoolHub admin Transactions: payments by status with the provider reference"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>02 · Sign up</figcaption>
+            <figcaption>03 · Transactions</figcaption>
           </figure>
           <figure class="screen">
             <img
-              src="images/kynda/my-learning.webp"
-              alt="Student view of enrolled sessions"
+              src="images/racoolhub/admin/users.webp"
+              alt="RacoolHub admin Users: users with verification status and wallet balance"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>03 · Enrolled sessions</figcaption>
+            <figcaption>04 · Users</figcaption>
           </figure>
           <figure class="screen">
             <img
-              src="images/kynda/student-sessions.webp"
-              alt="Student sessions with confirmed, pending and cancelled states"
+              src="images/racoolhub/admin/connections.webp"
+              alt="RacoolHub admin Connections: live connections with session usage and what is left"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>04 · My sessions</figcaption>
+            <figcaption>05 · Connections</figcaption>
           </figure>
           <figure class="screen">
             <img
-              src="images/kynda/parent-dashboard.webp"
-              alt="Parent dashboard with sessions, hours, spend and approvals"
+              src="images/racoolhub/admin/wallet.webp"
+              alt="RacoolHub admin Wallet: wallet balances and top-ups"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>05 · Parent dashboard</figcaption>
+            <figcaption>06 · Wallet</figcaption>
           </figure>
           <figure class="screen">
             <img
-              src="images/kynda/parent-approvals.webp"
-              alt="Parent approval requests table"
+              src="images/racoolhub/admin/reports.webp"
+              alt="RacoolHub admin Reports: revenue and data sold by plan, with downloads"
               width="1200"
               height="750"
               loading="lazy"
             />
-            <figcaption>06 · Approvals</figcaption>
-          </figure>
-          <figure class="screen">
-            <img
-              src="images/kynda/tutor-earnings.webp"
-              alt="Tutor earnings and recent transactions"
-              width="1200"
-              height="750"
-              loading="lazy"
-            />
-            <figcaption>07 · Tutor earnings</figcaption>
-          </figure>
-          <figure class="screen">
-            <img
-              src="images/kynda/tutor-profile.webp"
-              alt="Tutor profile, subjects and availability"
-              width="1200"
-              height="750"
-              loading="lazy"
-            />
-            <figcaption>08 · Tutor profile</figcaption>
+            <figcaption>07 · Reports</figcaption>
           </figure>
         </div>
       </div>
     </section>
     <section class="section dark" id="process">
       <div class="container">
-        <div class="eyebrow">04 · My contribution</div>
-        <h2>Design direction into working UI.</h2>
+        <div class="eyebrow">07 · Design process</div>
+        <h2>From one loop to a full product.</h2>
         <div class="process">
           <div class="step">
             <div class="step-no">01</div>
             <h3>Understand</h3>
             <p>
-              Review the team's product direction, interface requirements and
-              the learner journey the experience needed to support.
+              Map where getting online breaks down in public: finding a hotspot, trusting the price, connecting, and knowing what is left.
             </p>
           </div>
           <div class="step">
             <div class="step-no">02</div>
-            <h3>Translate</h3>
+            <h3>Structure</h3>
             <p>
-              Break the visual direction into reusable page structures,
-              responsive layouts and implementation-ready interface details.
+              Define the core loop and the screen map around it, from discovery through payment, connection and renewal.
             </p>
           </div>
           <div class="step">
             <div class="step-no">03</div>
-            <h3>Build</h3>
+            <h3>Design</h3>
             <p>
-              Implement the interface with HTML, CSS and JavaScript, paying
-              attention to spacing, typography, components, interactions and
-              responsive behavior.
+              Build the screens on a Figma design system with shared tokens, Inter type and reusable components for every state.
             </p>
           </div>
           <div class="step">
             <div class="step-no">04</div>
-            <h3>Refine</h3>
+            <h3>Validate</h3>
             <p>
-              Compare the implementation against the intended UI and refine
-              details where the coded experience differs from the design.
+              Audit the flows, prototype links, visual details and motion, and fix what breaks before handing off.
             </p>
           </div>
         </div>
@@ -901,54 +1123,47 @@
     <section class="section">
       <div class="container takeaways">
         <div>
-          <div class="eyebrow">05 · What I learned</div>
-          <h2>Good teamwork changes how you build.</h2>
+          <div class="eyebrow">08 · Key decisions</div>
+          <h2>Small details matter.</h2>
           <p class="copy">
-            Kynda gave me experience working within an existing product
-            direction rather than treating every design decision as an
-            individual one.
+            The decisions that shaped RacoolHub are mostly about trust: knowing
+            the price, knowing what happens next and knowing what's left.
           </p>
         </div>
         <div class="list">
           <div class="item">
             <b>01</b>
             <div>
-              <strong>Design and development need a shared language.</strong>
+              <strong>Browse first, sign in at checkout.</strong>
               <p>
-                Clear spacing, component and interaction decisions make the
-                transition from design to frontend much smoother.
+                People can see nearby hotspots and plans without an account. Sign-in is only asked for at checkout, after they know a hotspot is near them.
               </p>
             </div>
           </div>
           <div class="item">
             <b>02</b>
             <div>
-              <strong>Consistency matters across a team.</strong>
+              <strong>The amount is always on the button.</strong>
               <p>
-                A shared visual system helps different contributors produce
-                interfaces that still feel like one product.
+                The pay button always shows the total, so there is never a surprise between choosing a plan and paying for it.
               </p>
             </div>
           </div>
           <div class="item">
             <b>03</b>
             <div>
-              <strong>Implementation reveals design gaps.</strong>
+              <strong>Plan status is always visible.</strong>
               <p>
-                Building the UI exposes edge cases and responsive behavior that
-                are easy to miss in static screens.
+                While a plan is active, Home shows the remaining data and time to expiry, and low data and expiry each get their own state with one recovery action.
               </p>
             </div>
           </div>
           <div class="item">
             <b>04</b>
             <div>
-              <strong
-                >My frontend role strengthened my product thinking.</strong
-              >
+              <strong>Notifications are events, not a feed.</strong>
               <p>
-                Working closer to implementation made it easier to consider what
-                is practical, responsive and maintainable.
+                Every notification maps to a real change: payment, activation, high usage, expiring, expired or a failure.
               </p>
             </div>
           </div>
@@ -965,7 +1180,7 @@
       </div>
     </section>
     <footer class="footer">
-      <span>© 2026 Erinfolami Abdulmaliq · Kynda Case Study</span
+      <span>© 2026 Erinfolami Abdulmaliq · RacoolHub Case Study</span
       ><a href="#top">Back to top ↑</a>
     </footer>
   </body>

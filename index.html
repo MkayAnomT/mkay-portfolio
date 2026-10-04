@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="MKAY — Product Designer" />
-    <title>MKAY — Product Designer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Erinfolami Abdulmaliq — Product Designer" />
+    <title>Erinfolami Abdulmaliq — Product Designer</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap");
       :root {
@@ -177,6 +177,9 @@
         margin-top: 2px;
         color: #aaa;
         font-size: 10px;
+      }
+      main {
+        overflow-x: clip;
       }
       section {
         position: relative;
@@ -425,6 +428,13 @@
         border-radius: 17px;
         overflow: hidden;
         background: #e8e4de;
+      }
+      .project-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
       }
       .placeholder {
         width: 100%;
@@ -804,11 +814,42 @@
         margin: 0 !important;
         transform: none !important;
       }
+      .project.disabled {
+        opacity: 0.45;
+        filter: grayscale(1);
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .project.disabled:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      .about-photo {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+      }
+      .logo,
+      .nav-cta,
+      .nav-links .back {
+        white-space: nowrap;
+      }
+      @media (max-width: 380px) {
+        .logo {
+          font-size: 12px;
+        }
+        .nav-cta,
+        .nav-links .back {
+          font-size: 12px;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="nav" id="nav">
-      <a class="logo" href="#top"><span class="logo-dot"></span>MKAY</a>
+      <a class="logo" href="#top"><span class="logo-dot"></span>Erinfolami Abdulmaliq</a>
       <nav class="nav-links">
         <a href="#work">Work</a><a href="#about">About</a
         ><a href="#services">Services</a>
@@ -829,7 +870,7 @@
           role="menu"
           aria-hidden="true"
         >
-          <a href="mailto:your@email.com" role="menuitem"
+          <a href="mailto:erinfolamiadekunle89@gmail.com" role="menuitem"
             ><span class="contact-icon">✉</span
             ><span
               ><strong>Email me</strong><small>Send me an email</small></span
@@ -869,7 +910,7 @@
           <div aria-hidden="true">
             <div class="hero-orb"></div>
             <div class="hero-card">
-              <div class="mini">MKAY / 001</div>
+              <div class="mini">EA / 001</div>
               <strong>PRODUCT<br />DESIGNER<br />+ DEVELOPER</strong>
               <div class="bottom">
                 <span>UI/UX · FRONTEND</span><span>09—26</span>
@@ -914,15 +955,18 @@
             </p>
           </div>
           <div class="projects">
-            <a class="project reveal scale" href="uniflow.html"
-              ><div class="project-visual">
-                <div class="placeholder">
-                  <b>UNIFLOW</b><span>View case study ↗</span>
-                </div>
+            <a class='project reveal scale' href='/wadescribe'><div class="project-visual">
+                <img
+                  src="images/wadescribe-cover.webp"
+                  alt="WadeScribe app screens: Today home and the class timetable"
+                  width="1080"
+                  height="1350"
+                  loading="lazy"
+                />
               </div>
               <div class="project-info">
                 <div>
-                  <div class="project-name">UniFlow</div>
+                  <div class="project-name">WadeScribe</div>
                   <div class="project-cat">Education · Campus productivity</div>
                 </div>
                 <span class="project-arrow">↗</span>
@@ -940,26 +984,29 @@
                 </div>
                 <span class="project-arrow">↗</span>
               </div></a
-            ><a class="project reveal scale" href="#"
-              ><div class="project-visual">
-                <div class="placeholder">
-                  <b>RACOOL HUB</b><span>Drop project screenshot here</span>
-                </div>
+            ><a class='project reveal scale' href='/racoolhub'><div class="project-visual">
+                <img
+                  src="images/racoolhub-cover.webp"
+                  alt="RacoolHub app screens: Discover Wi-Fi and an active connection"
+                  width="1080"
+                  height="1350"
+                  loading="lazy"
+                />
               </div>
               <div class="project-info">
                 <div>
-                  <div class="project-name">Racool Hub</div>
-                  <div class="project-cat">Marketplace · Logistics</div>
+                  <div class="project-name">RacoolHub</div>
+                  <div class="project-cat">Connectivity · Mobile app</div>
                 </div>
                 <span class="project-arrow">↗</span>
               </div></a
-            ><a class="project reveal scale" href="energize.html"
-              ><div class="project-visual">
+            ><a class='project reveal scale' href='/energize'><div class="project-visual">
                 <img
-                  src="images/energize/m-home.jpg"
-                  alt="Energize home page: Pick your lane, with eight graphite goal lanes"
+                  src="images/energize-cover.webp"
+                  alt="Energize app screens: Pick your lane home and the Morning Flow workout"
+                  width="1080"
+                  height="1350"
                   loading="lazy"
-                  style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block"
                 />
               </div>
               <div class="project-info">
@@ -969,11 +1016,14 @@
                 </div>
                 <span class="project-arrow">↗</span>
               </div></a
-            ><a class="project reveal scale" href="kynda.html"
-              ><div class="project-visual">
-                <div class="placeholder">
-                  <b>KYNDA</b><span>Drop project screenshot here</span>
-                </div>
+            ><a class='project reveal scale' href='/kynda'><div class="project-visual">
+                <img
+                  src="images/kynda-cover.webp"
+                  alt="Kynda parent home screen with sessions, approvals and upcoming lessons"
+                  width="1080"
+                  height="1350"
+                  loading="lazy"
+                />
               </div>
               <div class="project-info">
                 <div>
@@ -982,10 +1032,10 @@
                 </div>
                 <span class="project-arrow">↗</span>
               </div></a
-            ><a class="project reveal scale" href="#"
+            ><div class="project reveal scale disabled" aria-disabled="true"
               ><div class="project-visual">
                 <div class="placeholder">
-                  <b>MORE WORK</b><span>Drop project screenshot here</span>
+                  <b>MORE WORK</b><span>Coming soon</span>
                 </div>
               </div>
               <div class="project-info">
@@ -994,7 +1044,7 @@
                   <div class="project-cat">UI/UX · Product design</div>
                 </div>
                 <span class="project-arrow">↗</span>
-              </div></a
+              </div></div
             >
           </div>
         </div>
@@ -1081,9 +1131,14 @@
       <section class="about" id="about">
         <div class="container about-grid">
           <div class="about-visual reveal left">
-            <div class="about-placeholder">
-              <b>YOUR PHOTO</b><span>Drop portrait here</span>
-            </div>
+            <img
+              class="about-photo"
+              src="images/mkay-portrait.webp"
+              alt="Portrait of Erinfolami Abdulmaliq"
+              width="420"
+              height="540"
+              loading="lazy"
+            />
           </div>
           <div class="about-copy reveal right">
             <div class="eyebrow">A little about me</div>
@@ -1091,7 +1146,7 @@
               Designing with curiosity. Building with intent.
             </h2>
             <p>
-              I'm MKAY, a product designer focused on creating digital
+              I'm Erinfolami Abdulmaliq, a product designer focused on creating digital
               experiences that feel simple, useful and intentional. I work
               across UI/UX, product thinking and increasingly the space between
               design and code.
@@ -1121,11 +1176,11 @@
             <div class="hero-actions">
               <a
                 class="btn primary"
-                href="mailto:your@email.com?subject=Project%20enquiry"
+                href="mailto:erinfolamiadekunle89@gmail.com?subject=Project%20enquiry"
                 >Contact me ↗</a
               ><a
                 class="btn secondary"
-                href="?text=Hi%20MKAY%2C%20I'd%20like%20to%20work%20with%20you."
+                href="?text=Hi%20Erinfolami%20Abdulmaliq%2C%20I'd%20like%20to%20work%20with%20you."
                 target="_blank"
                 >WhatsApp ↗</a
               >
@@ -1133,7 +1188,7 @@
             <div class="contact-details">
               <div class="detail">
                 <label>Email</label
-                ><a href="mailto:your@email.com">your@email.com</a>
+                ><a href="mailto:erinfolamiadekunle89@gmail.com">erinfolamiadekunle89@gmail.com</a>
               </div>
               <div class="detail">
                 <label>WhatsApp</label><a href="">Add WhatsApp number</a>
@@ -1147,14 +1202,14 @@
       </section>
     </main>
     <footer class="footer">
-      <span>© 2026 MKAY</span><a href="#top">Back to top ↑</a>
+      <span>© 2026 Erinfolami Abdulmaliq</span><a href="#top">Back to top ↑</a>
     </footer>
     <a
       class="whatsapp"
       id="whatsapp"
-      href="?text=Hi%20MKAY%2C%20I'd%20like%20a%20quote%20for%20a%20project."
+      href="?text=Hi%20Erinfolami%20Abdulmaliq%2C%20I'd%20like%20a%20quote%20for%20a%20project."
       target="_blank"
-      aria-label="Chat with MKAY on WhatsApp"
+      aria-label="Chat with Erinfolami Abdulmaliq on WhatsApp"
       ><svg viewBox="0 0 24 24">
         <path
           d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.1-3.5-8.3Zm-8.4 18.1h-.1c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.8 1 1-3.7-.2-.3a9.8 9.8 0 0 1-1.5-5.2C2.4 6.4 6.8 2 12.1 2c2.6 0 5.1 1 7 2.9s2.9 4.3 2.9 6.9c0 5.4-4.4 9.8-9.9 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2c-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-1.9-.9-3.2-1.6-4.4-3.6-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.2-.6-.4Z"
